@@ -15,7 +15,15 @@ mp_drawing_styles = mp.solutions.drawing_styles
 
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
-labels_dict = {0: '1',1: '2',2: '3',3: '4',4: '5',5: '6',6: '7',7: '8',8: '9',9: '10'}
+labels_dict = {}
+
+n = int(input("有多少個資料: "))
+
+for i in range(n):
+    labels_dict[i] = input()
+
+print("Updated labels_dict:", labels_dict)
+
 while True:
 
     data_aux = []
@@ -63,7 +71,7 @@ while True:
         predicted_character = labels_dict[int(prediction[0])]
 
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 4)
-        cv2.putText(frame, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3,
+        cv2.putText(frame, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 2.0, (255, 245, 0), 3,
                     cv2.LINE_AA)
 
     cv2.imshow('frame', frame)

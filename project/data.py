@@ -48,3 +48,4 @@ for dir_ in os.listdir(DATA_DIR):
 f = open('data.pickle', 'wb')
 pickle.dump({'data': data, 'labels': labels}, f)
 f.close()
+print('完成')
