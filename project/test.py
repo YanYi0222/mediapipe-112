@@ -149,7 +149,7 @@ labels_dict = {}
 n = number_of_classes
 
 for i in range(n):
-    labels_dict[i] = input()
+    labels_dict[i] = input(("翻譯名詞: "))
 
 print("Updated labels_dict:", labels_dict)
 
