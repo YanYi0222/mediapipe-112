@@ -1,7 +1,7 @@
 import os
 import pickle
 import shutil
-
+from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -74,6 +74,10 @@ mp_drawing_styles = mp.solutions.drawing_styles
 
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
+DATA_DIR = './data'
+
+
+
 data = []
 labels = []
 for dir_ in os.listdir(DATA_DIR):
@@ -101,7 +105,7 @@ for dir_ in os.listdir(DATA_DIR):
                     y = hand_landmarks.landmark[i].y
                     data_aux.append(x - min(x_))
                     data_aux.append(y - min(y_))
-                data_aux = data_aux[:42]
+
             data.append(data_aux)
             labels.append(dir_)
 
@@ -109,6 +113,7 @@ f = open('data.pickle', 'wb')
 pickle.dump({'data': data, 'labels': labels}, f)
 f.close()
 print('完成')
+
 
 ##步驟train
 data_dict = pickle.load(open('./data.pickle', 'rb'))
@@ -155,7 +160,7 @@ print("Updated labels_dict:", labels_dict)
 
 while True:
 
-    data_aux = [42:]
+    data_aux = []
     x_ = []
     y_ = []
 
